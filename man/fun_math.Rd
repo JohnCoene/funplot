@@ -26,6 +26,7 @@ funplot() \%>\%
  fun_math("gamma(x)")
 
 funplot() \%>\%
- fun_math("tan(x)", samples = 4000)
+ fun_math("atan2(x, x ^ 2) / pi", samples = 4000) \%>\%
+ fun_y(domain = list(-1, 1))
 
 }

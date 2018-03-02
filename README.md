@@ -99,4 +99,9 @@ funplot() %>%
   fun_grid() %>% 
   fun_zoom() %>% 
   fun_title("Custom axis")
+  
+# use math.js
+funplot() %>%
+  fun_math("atan2(x, x ^ 2) / pi", samples = 4000) %>%
+  fun_y(domain = list(-1, 1))
 ```
