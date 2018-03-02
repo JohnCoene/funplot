@@ -15,7 +15,7 @@ fun_lines(p, data, ...)
 \item{data}{\code{data.frame} or \code{matrix} where the first
 column is \eqn{x} and the sencond \eqn{y}.}
 
-\item{...}{any other parameter.}
+\item{...}{Any other parameter.}
 }
 \description{
 Add points to plot.

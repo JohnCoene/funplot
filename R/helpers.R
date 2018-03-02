@@ -3,8 +3,8 @@
 #' Add secants to the previously added function.
 #'
 #' @inheritParams fun_add
-#' @param x0,x1 see details.
-#' @param mouse update secant on mouse move.
+#' @param x0,x1 See details.
+#' @param mouse Update secant on mouse move.
 #'
 #' @details
 #' If a data object has a secants, then each object will be used to compute secant lines between two
@@ -50,8 +50,8 @@ fun_secants <- function(p, x0, x1 = NULL, mouse = FALSE){
 #' Add a derivative to the previously added function.
 #'
 #' @inheritParams fun_add
-#' @param fun see details.
-#' @param mouse update tip on mouse move.
+#' @param fun Derivative, see details.
+#' @param mouse Update tip on mouse move.
 #'
 #' @details
 #' If \code{mouse} is set to true then tangent line is computed whenever the mouse is moved inside the canvas
@@ -89,7 +89,7 @@ fun_deriv <- function(p, fun, mouse = FALSE){
 #' Add a scope to a polar equation.
 #'
 #' @inheritParams fun_add
-#' @param a,r0,gamma parameters for \code{r} in \code{\link{fun_add_polar}}.
+#' @param a,r0,gamma Parameters for \code{r} in \code{\link{fun_add_polar}}.
 #'
 #' @examples
 #' fn <- "r0 * cos(theta - gamma) + sqrt(a^2 - r0^2 * (sin(theta - gamma))^2)"
@@ -122,7 +122,7 @@ fun_scope <- function(p, a, r0, gamma){
 #' @inheritParams fun_add
 #' @param data \code{data.frame} or \code{matrix} where the first
 #' column is \eqn{x} and the sencond \eqn{y}.
-#' @param ... any other parameter.
+#' @param ... Any other parameter.
 #'
 #' @examples
 #' points <- data.frame(x = rnorm(10), y = rnorm(10))
@@ -175,7 +175,7 @@ fun_lines <- function(p, data, ...){
 #' @inheritParams fun_add
 #' @param vector A vector of length 2.
 #' @param offset A vector of displacement from the origin.
-#' @param ... any other parameter.
+#' @param ... Any other parameter.
 #'
 #' @examples
 #' funplot() %>%

@@ -9,7 +9,7 @@ fun_scope(p, a, r0, gamma)
 \arguments{
 \item{p}{Plot as initialised by \code{\link{funplot}}.}
 
-\item{a, r0, gamma}{parameters for \code{r} in \code{\link{fun_add_polar}}.}
+\item{a, r0, gamma}{Parameters for \code{r} in \code{\link{fun_add_polar}}.}
 }
 \description{
 Add a scope to a polar equation.

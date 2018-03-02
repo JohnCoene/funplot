@@ -13,7 +13,7 @@ fun_vector(p, vector, offset = NULL, ...)
 
 \item{offset}{A vector of displacement from the origin.}
 
-\item{...}{any other parameter.}
+\item{...}{Any other parameter.}
 }
 \description{
 Add a vector to plot.

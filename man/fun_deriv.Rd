@@ -9,9 +9,9 @@ fun_deriv(p, fun, mouse = FALSE)
 \arguments{
 \item{p}{Plot as initialised by \code{\link{funplot}}.}
 
-\item{fun}{see details.}
+\item{fun}{Derivative, see details.}
 
-\item{mouse}{update tip on mouse move.}
+\item{mouse}{Update tip on mouse move.}
 }
 \description{
 Add a derivative to the previously added function.

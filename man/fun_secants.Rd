@@ -9,9 +9,9 @@ fun_secants(p, x0, x1 = NULL, mouse = FALSE)
 \arguments{
 \item{p}{Plot as initialised by \code{\link{funplot}}.}
 
-\item{x0, x1}{see details.}
+\item{x0, x1}{See details.}
 
-\item{mouse}{update secant on mouse move.}
+\item{mouse}{Update secant on mouse move.}
 }
 \description{
 Add secants to the previously added function.
