@@ -8,16 +8,16 @@
 \title{Add function}
 \usage{
 fun_add(p, fun, samples = NULL, closed = FALSE, color = NULL,
-  type = NULL, tip = FALSE, ...)
+  type = NULL, range = NULL, tip = FALSE, ...)
 
 fun_add_param(p, x, y, samples = NULL, closed = FALSE, color = NULL,
-  type = "polyline", tip = FALSE, ...)
+  type = "polyline", range = NULL, tip = FALSE, ...)
 
 fun_add_polar(p, r, scope = NULL, samples = NULL, closed = FALSE,
-  color = NULL, type = "polyline", tip = FALSE, ...)
+  color = NULL, type = "polyline", range = NULL, tip = FALSE, ...)
 
 fun_add_imp(p, fun, samples = NULL, closed = FALSE, color = NULL,
-  type = NULL, tip = FALSE, ...)
+  type = NULL, range = NULL, tip = FALSE, ...)
 }
 \arguments{
 \item{p}{Plot as initialised by \code{\link{funplot}}.}
@@ -31,19 +31,21 @@ at the cost of processing speed.}
 
 \item{closed}{Set to \code{TRUE} to render a closed path, y0 will always be 0 and y1 will be \eqn{fn(x)}.}
 
-\item{color}{color.}
+\item{color}{Color.}
 
-\item{type}{three representations of functions, default to \code{interval}, see details.}
+\item{type}{Rhree representations of functions, default to \code{interval}, see details.}
 
-\item{tip}{set to \code{TRUE} to hide the tooltip.}
+\item{range}{A \code{list} of length 2, the function will be evaluated only within this range.}
 
-\item{...}{any other parameter.}
+\item{tip}{Set to \code{TRUE} to hide the tooltip.}
 
-\item{x, y}{parametric equation.}
+\item{...}{Any other parameter.}
 
-\item{r}{polar equation.}
+\item{x, y}{Parametric equation.}
 
-\item{scope}{scope of \code{r}, see \code{\link{fun_scope}}.}
+\item{r}{Polar equation.}
+
+\item{scope}{Scope of \code{r}, see \code{\link{fun_scope}}.}
 }
 \description{
 Add a function to plot.
