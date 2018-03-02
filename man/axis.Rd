@@ -22,6 +22,12 @@ fun_y(p, type = NULL, label = NULL, domain = NULL)
 \description{
 Change plot size.
 }
+\details{
+\code{fun_y} \code{domain} parameter defaults to \code{list(-7, 7)}. By default the domain of
+\code{fun_x} is computed with: \deqn{yDiff = height * (xDomain[1] - xDomain[0]) / width}
+Note: The origin is at the center of the graph by default so \eqn{yDiff} is split in half
+and distributed evenly to the \eqn{±y} axis.
+}
 \examples{
 funplot() \%>\%
   fun_add("x ^ 2") \%>\%
