@@ -6,7 +6,7 @@ Function Plot is a plotting library built on top of [D3.js](https://d3js.org/) u
 
 The library currently supports interactive line charts and scatterplots, whenever the graph scale is modified the function is evaluated again with the new bounds, result: infinite graphs!
 
-## Installation
+## Installationgit 
 
 ``` r
 # install.packages("devtools")
@@ -83,4 +83,20 @@ funplot() %>%
 funplot() %>%
   fun_points(points) %>%
   fun_lines(lines)
+
+# annotate
+funplot() %>%
+  fun_add("x^2") %>%
+  fun_annot(x = 1, text = "x = 1") %>%
+  fun_annot(y = 2, text = "y = 2")
+
+# custom axis and grid
+# disable zoom
+funplot() %>%
+  fun_add("x ^ 2") %>%
+  fun_x(label = "x axis", domain = list(-6, 6)) %>%
+  fun_y(type = "log", "log scale") %>%
+  fun_grid() %>% 
+  fun_zoom() %>% 
+  fun_title("Custom axis")
 ```
