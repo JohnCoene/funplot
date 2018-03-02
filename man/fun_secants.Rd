@@ -34,8 +34,6 @@ Values for \code{secants} list:
 funplot() \%>\%
   fun_add("x^2") \%>\%
   fun_secants(x0 = 5, mouse = TRUE) \%>\%
-  fun_secants(x0 = 2, x1 = 3) \%>\%
-  fun_y(domain = list(-200, 400)) \%>\%
-  fun_x(domain = list(-300, 300))
+  fun_secants(x0 = 2, x1 = 3)
 
 }

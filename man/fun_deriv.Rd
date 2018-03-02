@@ -26,4 +26,10 @@ funplot() \%>\%
   fun_add("x^2") \%>\%
   fun_deriv("2 * x", mouse = TRUE)
 
+funplot() \%>\%
+  fun_add("x * x") \%>\%
+  fun_deriv("2 * x", mouse = TRUE) \%>\%
+  fun_add("x * x * x") \%>\%
+  fun_deriv("3 * x * x", mouse = TRUE)
+
 }

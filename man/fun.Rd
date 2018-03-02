@@ -2,10 +2,15 @@
 % Please edit documentation in R/add_fun.R
 \name{fun_add}
 \alias{fun_add}
+\alias{fun_add_param}
 \title{Add function}
 \usage{
 fun_add(p, fun, samples = NULL, closed = FALSE, color = NULL,
-  type = NULL, tip = FALSE, secants = NULL, derivative = NULL)
+  type = NULL, tip = FALSE, secants = NULL, derivative = NULL, ...)
+
+fun_add_param(p, x, y, samples = NULL, closed = FALSE, color = NULL,
+  type = "polyline", tip = FALSE, secants = NULL, derivative = NULL,
+  ...)
 }
 \arguments{
 \item{p}{Plot as initialised by \code{\link{funplot}}.}
@@ -24,6 +29,14 @@ at the cost of processing speed.}
 \item{type}{three representations of functions, default to \code{interval}, see details.}
 
 \item{tip}{set to \code{TRUE} to hide the tooltip.}
+
+\item{secants}{add secants.}
+
+\item{derivative}{add derivative.}
+
+\item{...}{any other parameter.}
+
+\item{x, y}{parameters.}
 }
 \description{
 Add a function to plot.
@@ -59,8 +72,17 @@ Values for \code{secants} list:
 }
 }
 \examples{
+# basic
 funplot() \%>\%
   fun_add(fun = "sin(x)")
+
+# parametric
+funplot() \%>\%
+  fun_add_param(
+    x = "sin(t) * (exp(cos(t)) - 2 cos(4t) - sin(t/12)^5)",
+    y = "cos(t) * (exp(cos(t)) - 2 cos(4t) - sin(t/12)^5)",
+    type = "polyline"
+   )
 
 # multiple functions
 funplot() \%>\%

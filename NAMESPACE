@@ -2,6 +2,7 @@
 
 export("%>%")
 export(fun_add)
+export(fun_add_param)
 export(fun_annot)
 export(fun_deriv)
 export(fun_grid)

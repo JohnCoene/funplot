@@ -4,6 +4,7 @@
 #'
 #' @param p Plot as initialised by \code{\link{funplot}}.
 #' @param fun Function to plot.
+#' @param x,y parameters.
 #' @param samples Determine the number of equally spaced points
 #' in which the function will be evaluated in the current domain,
 #' increasing it will more accurately represent the function using rectangles
@@ -12,6 +13,9 @@
 #' @param color color.
 #' @param type three representations of functions, default to \code{interval}, see details.
 #' @param tip set to \code{TRUE} to hide the tooltip.
+#' @param secants add secants.
+#' @param derivative add derivative.
+#' @param ... any other parameter.
 #'
 #' @details
 #' Valid \code{type} values:
@@ -44,8 +48,17 @@
 #' }
 #'
 #' @examples
+#' # basic
 #' funplot() %>%
 #'   fun_add(fun = "sin(x)")
+#'
+#' # parametric
+#' funplot() %>%
+#'   fun_add_param(
+#'     x = "sin(t) * (exp(cos(t)) - 2 cos(4t) - sin(t/12)^5)",
+#'     y = "cos(t) * (exp(cos(t)) - 2 cos(4t) - sin(t/12)^5)",
+#'     type = "polyline"
+#'    )
 #'
 #' # multiple functions
 #' funplot() %>%
@@ -90,15 +103,37 @@
 #' funplot() %>%
 #'   fun_add("x^2", derivative = list(fn = "2 * x", updateOnMouseMove = TRUE))
 #'
+#' @rdname fun
 #' @seealso \code{\link{fun_secants}}, \code{\link{fun_deriv}}
 #' @export
 fun_add <- function(p, fun, samples = NULL, closed = FALSE, color = NULL, type = NULL,
-                    tip = FALSE, secants = NULL, derivative = NULL){
+                    tip = FALSE, secants = NULL, derivative = NULL, ...){
   if(missing(p)) stop("missing plot.")
-  if(missing(fun)) stop("missing fun.")
 
-  foo <- list()
-  foo$fn <- fun
+  foo <- list(...)
+  foo$fn <- if(!missing(fun)) fun
+  foo$nSamples <- if(!is.null(samples)) samples
+  foo$closed <- closed
+  foo$color <- if(!is.null(color)) color
+  foo$graphType <- if(!is.null(type)) type
+  foo$skipTip <- tip
+  foo$secants <- if(!is.null(secants)) secants
+  foo$derivative <- if(!is.null(derivative)) derivative
+
+  p$x$data <- append(p$x$data, list(foo))
+  p
+}
+
+#' @rdname fun
+#' @export
+fun_add_param <- function(p, x, y, samples = NULL, closed = FALSE, color = NULL, type = "polyline",
+                          tip = FALSE, secants = NULL, derivative = NULL, ...){
+  if(missing(p)) stop("missing plot.")
+
+  foo <- list(...)
+  foo$x <- x
+  foo$y <- y
+  foo$fnType <- "parametric"
   foo$nSamples <- if(!is.null(samples)) samples
   foo$closed <- closed
   foo$color <- if(!is.null(color)) color
