@@ -172,6 +172,7 @@ fun_lines <- function(p, data, ...){
 #'
 #' Add a vector to plot.
 #'
+#' @inheritParams fun_add
 #' @param vector A vector of length 2.
 #' @param offset A vector of displacement from the origin.
 #' @param ... any other parameter.

@@ -7,6 +7,8 @@
 fun_vector(p, vector, offset = NULL, ...)
 }
 \arguments{
+\item{p}{Plot as initialised by \code{\link{funplot}}.}
+
 \item{vector}{A vector of length 2.}
 
 \item{offset}{A vector of displacement from the origin.}
