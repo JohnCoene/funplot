@@ -62,16 +62,6 @@ funplot() %>%
 funplot() %>%
   fun_add("nthRoot(x, 3)^2")
 
-# derivative
-funplot() %>%
-  fun_add("x^2") %>%
-  fun_deriv("2 * x", mouse = TRUE)
-
-# secants
-funplot() %>%
-  fun_add("x^2") %>%
-  fun_secants(x0 = 5, mouse = TRUE)
-
 # secants and derivative
 funplot() %>%
   fun_add("x * x") %>%
