@@ -3,14 +3,17 @@
 \name{fun_add}
 \alias{fun_add}
 \alias{fun_add_param}
+\alias{fun_add_polar}
 \title{Add function}
 \usage{
 fun_add(p, fun, samples = NULL, closed = FALSE, color = NULL,
-  type = NULL, tip = FALSE, secants = NULL, derivative = NULL, ...)
+  type = NULL, tip = FALSE, ...)
 
 fun_add_param(p, x, y, samples = NULL, closed = FALSE, color = NULL,
-  type = "polyline", tip = FALSE, secants = NULL, derivative = NULL,
-  ...)
+  type = "polyline", tip = FALSE, ...)
+
+fun_add_polar(p, r, scope = NULL, samples = NULL, closed = FALSE,
+  color = NULL, type = "polyline", tip = FALSE, ...)
 }
 \arguments{
 \item{p}{Plot as initialised by \code{\link{funplot}}.}
@@ -30,13 +33,13 @@ at the cost of processing speed.}
 
 \item{tip}{set to \code{TRUE} to hide the tooltip.}
 
-\item{secants}{add secants.}
-
-\item{derivative}{add derivative.}
-
 \item{...}{any other parameter.}
 
-\item{x, y}{parameters.}
+\item{x, y}{parametric equation.}
+
+\item{r}{polar equation.}
+
+\item{scope}{scope of \code{r}, see \code{\link{fun_scope}}.}
 }
 \description{
 Add a function to plot.
@@ -52,37 +55,27 @@ Valid \code{type} values:
   after the evaluation 2d rects are painted on the screen (done using the \code{<path>} svg element)}
 }
 
-\code{fun}
+\code{fun}:
 
 Plotting roots can be a challenging problem, most plotters will actually analyze expression of the type \eqn{x^{a/b}},
 particularly they will analyze the denominator of the exponent (to plot in the negative x-axis),
 interval-arithmetic and math.js come bundled with a useful \code{nthRoot} function to solve these issues.
-
-If a data object has a secants \code{list}, then each object will be used to compute secant lines between two
-points belonging to the function, additionally if \code{updateOnMouseMove} is a property set to true in the object then
-\eqn{(x_{0},f(x_{1}))} will be used as an anchored point and \eqn{(x_{0},f(x_{1}))} will be computed dynamically
-based on the mouse abscissa.
-
-Values for \code{secants} list:
-\itemize{
-  \item{\code{x0} }{the abscissa of the first point}
-  \item{\code{x1} }{(optional if \code{updateOnMouseMove} is set) the abscissa of the second point}
-  \item{\code{updateOnMouseMove} }{ (optional) if set to \code{TRUE} \code{x1} will be computed dynamically
-  based on the current position of the mouse}.
-}
 }
 \examples{
-# basic
+# basic equation
 funplot() \%>\%
   fun_add(fun = "sin(x)")
 
-# parametric
+# parametric equation
 funplot() \%>\%
   fun_add_param(
     x = "sin(t) * (exp(cos(t)) - 2 cos(4t) - sin(t/12)^5)",
-    y = "cos(t) * (exp(cos(t)) - 2 cos(4t) - sin(t/12)^5)",
-    type = "polyline"
+    y = "cos(t) * (exp(cos(t)) - 2 cos(4t) - sin(t/12)^5)"
    )
+
+# polar equation
+funplot() \%>\%
+  fun_add_polar(r = "2 * sin(4 theta)")
 
 # multiple functions
 funplot() \%>\%
@@ -110,24 +103,7 @@ funplot() \%>\%
 funplot() \%>\%
   fun_add("nthRoot(x, 3)^2")
 
-# secants
-funplot() \%>\%
-  fun_add(
-    "x^2",
-    secants = list(
-      list(x0 = 2, x1 = 3),
-      list(x0 = -2, updateOnMouseMove = TRUE),
-      list(x0 = 1, x1 = 2)
-    )
-  ) \%>\%
-  fun_y(domain = list(-200, 400)) \%>\%
-  fun_x(domain = list(-300, 300))
-
-# derivative
-funplot() \%>\%
-  fun_add("x^2", derivative = list(fn = "2 * x", updateOnMouseMove = TRUE))
-
 }
 \seealso{
-\code{\link{fun_secants}}, \code{\link{fun_deriv}}
+\code{\link{fun_secants}}, \code{\link{fun_deriv}}, \code{\link{fun_scope}}
 }
