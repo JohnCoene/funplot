@@ -12,3 +12,75 @@ The library currently supports interactive line charts and scatterplots, wheneve
 # install.packages("devtools")
 devtools::install_github("JohnCoene/funplot")
 ```
+# Examples
+
+```r
+library(funplot)
+
+# basic equation
+funplot() %>%
+  fun_add(fun = "sin(x)")
+
+# parametric equation
+funplot() %>%
+  fun_add_param(
+    x = "sin(t) * (exp(cos(t)) - 2 cos(4t) - sin(t/12)^5)",
+    y = "cos(t) * (exp(cos(t)) - 2 cos(4t) - sin(t/12)^5)"
+  )
+
+# polar equation
+funplot() %>%
+  fun_add_polar(r = "2 * sin(4 theta)")
+
+# implicit function
+funplot() %>%
+  fun_add_imp("x ^ 2 + y ^ 2 - 1")
+
+# multiple functions
+funplot() %>%
+  fun_add("sqrt(1 - x * x)") %>%
+  fun_add("-sqrt(1 - x * x)")
+
+# n samples (precision)
+funplot() %>%
+  fun_add(fun = "sin(x)", samples = 1000)
+
+# area
+funplot() %>%
+  fun_add("1/x * cos(1/x)", closed = TRUE) %>%
+  fun_x("log", domain = list(0.01, 1)) %>%
+  fun_y(domain = list(-100, 100))
+
+# color and type
+funplot() %>%
+  fun_add("x", color = "black") %>%
+  fun_add("-x") %>%
+  fun_add("-sqrt(x)", type = "scatter", samples = 100) %>%
+  fun_add("sqrt(x)", tip = TRUE)
+
+# nthRoot
+funplot() %>%
+  fun_add("nthRoot(x, 3)^2")
+
+# derivative
+funplot() %>%
+  fun_add("x^2") %>%
+  fun_deriv("2 * x", mouse = TRUE)
+
+# secants
+funplot() %>%
+  fun_add("x^2") %>%
+  fun_secants(x0 = 5, mouse = TRUE)
+
+# secants and derivative
+funplot() %>%
+  fun_add("x * x") %>%
+  fun_deriv("2 * x", mouse = TRUE) %>%
+  fun_add("x * x * x") %>%
+  fun_secants(x0 = 5, mouse = TRUE)
+
+# lines and points
+funplot() %>%
+  fun_points(points) %>%
+  fun_lines(lines)
+```
