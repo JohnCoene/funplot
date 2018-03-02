@@ -1,0 +1,9 @@
+dependencies:
+ - name: d3
+   version: 3
+   src: htmlwidgets/lib/d3
+   script: d3.v3.min.js
+ - name: function-plot
+   version: 1.18.1
+   src: htmlwidgets/lib/function-pot-1.18.1
+   script: function-plot.js

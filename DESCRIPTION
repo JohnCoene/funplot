@@ -1,0 +1,13 @@
+Package: funplot
+Title: A Powerful Library Built on Top of 'd3.js' Whose Purpose Is to Render Functions With Little Configuration
+Version: 0.0.0.9000
+Authors@R: person("John", "Coene", email = "jcoenep@gmail.com", role = c("aut", "cre"))
+Description: A Powerful Library Built on Top of 'd3.js' Whose Purpose Is to Render Functions With Little Configuration.
+Depends: R (>= 3.4.2)
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+Imports:
+    htmlwidgets,
+    magrittr
