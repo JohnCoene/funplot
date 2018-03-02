@@ -2,6 +2,8 @@
 
 # funplot
 
+![funplot](http://john-coene.com/img/thumbnails/funplot.png)
+
 * [Installation](#installation)
 * [Examples](#examples)
 * [Website](http://john-coene.com/funplot)
