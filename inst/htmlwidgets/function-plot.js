@@ -12,7 +12,7 @@ HTMLWidgets.widget({
 
       renderValue: function(x) {
 
-        functionPlot({
+        window[el.id] = functionPlot({
           target: '#' + el.id,
           title: x.title,
           width: x.width,
@@ -24,6 +24,8 @@ HTMLWidgets.widget({
           grid: x.grid,
           data: x.data
         });
+
+        window[el.id];
 
       },
 

@@ -3,6 +3,10 @@ dependencies:
    version: 3
    src: htmlwidgets/lib/d3
    script: d3.v3.min.js
+ - name: mathjs
+   version: 1.5.2
+   src: htmlwidgets/lib/math-1.5.2
+   script: math.min.js
  - name: function-plot
    version: 1.18.1
    src: htmlwidgets/lib/function-pot-1.18.1

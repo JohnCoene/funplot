@@ -85,7 +85,7 @@ funplot() \%>\%
 
 # implicit function
 funplot() \%>\%
-  fun_add_imp("x ^ 2 + y ^ 2 - 1")
+  fun_add_imp("cos(PI * x) - cos(PI * y)")
 
 # multiple functions
 funplot() \%>\%

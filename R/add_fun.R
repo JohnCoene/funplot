@@ -53,7 +53,7 @@
 #'
 #' # implicit function
 #' funplot() %>%
-#'   fun_add_imp("x ^ 2 + y ^ 2 - 1")
+#'   fun_add_imp("cos(PI * x) - cos(PI * y)")
 #'
 #' # multiple functions
 #' funplot() %>%
@@ -170,6 +170,40 @@ fun_add_imp <- function(p, fun, samples = NULL, closed = FALSE, color = NULL, ty
   foo$color <- if(!is.null(color)) color
   foo$graphType <- if(!is.null(type)) type
   foo$skipTip <- tip
+
+  p$x$data <- append(p$x$data, list(foo))
+  p
+}
+
+#' Add math.js
+#'
+#' Add a Add function to be evaluated by math.js.
+#'
+#' @inheritParams fun_add
+#' @param fun Function to plot.
+#' @param ... Any other parameter, see \code{\link{fun_add}}.
+#'
+#' @details \code{funplot} uses interval-arithmetic math by default, unfortunately some functions are not
+#' implemented yet because of the underlying complexity, for this reason you can always evaluate a function with
+#' \href{mathjs}{http://mathjs.org/}.
+#'
+#' @examples
+#' funplot() %>%
+#'  fun_math("gamma(x)")
+#'
+#' funplot() %>%
+#'  fun_math("atan2(x, x ^ 2) / pi", samples = 4000) %>%
+#'  fun_y(domain = list(-1, 1))
+#'
+#' @export
+fun_math <- function(p, fun, ...){
+  if(missing(p)) stop("missing plot.")
+  if(missing(fun)) stop("missing fun.")
+
+  foo <- list(...)
+  foo$fn <- fun
+  foo$sample <- "builtIn"
+  foo$graphType <- "polyline"
 
   p$x$data <- append(p$x$data, list(foo))
   p
