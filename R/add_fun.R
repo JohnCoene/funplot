@@ -4,18 +4,19 @@
 #'
 #' @param p Plot as initialised by \code{\link{funplot}}.
 #' @param fun Function to plot.
-#' @param x,y parametric equation.
-#' @param r polar equation.
+#' @param x,y Parametric equation.
+#' @param r Polar equation.
 #' @param samples Determine the number of equally spaced points
 #' in which the function will be evaluated in the current domain,
 #' increasing it will more accurately represent the function using rectangles
 #' at the cost of processing speed.
 #' @param closed Set to \code{TRUE} to render a closed path, y0 will always be 0 and y1 will be \eqn{fn(x)}.
-#' @param color color.
-#' @param type three representations of functions, default to \code{interval}, see details.
-#' @param tip set to \code{TRUE} to hide the tooltip.
-#' @param scope scope of \code{r}, see \code{\link{fun_scope}}.
-#' @param ... any other parameter.
+#' @param color Color.
+#' @param type Rhree representations of functions, default to \code{interval}, see details.
+#' @param tip Set to \code{TRUE} to hide the tooltip.
+#' @param scope Scope of \code{r}, see \code{\link{fun_scope}}.
+#' @param range A \code{list} of length 2, the function will be evaluated only within this range.
+#' @param ... Any other parameter.
 #'
 #' @details
 #' Valid \code{type} values:
@@ -94,12 +95,13 @@
 #' @seealso \code{\link{fun_secants}}, \code{\link{fun_deriv}}, \code{\link{fun_scope}}
 #' @export
 fun_add <- function(p, fun, samples = NULL, closed = FALSE, color = NULL, type = NULL,
-                    tip = FALSE, ...){
+                    range = NULL, tip = FALSE, ...){
   if(missing(p)) stop("missing plot.")
 
   foo <- list(...)
   foo$fn <- if(!missing(fun)) fun
   foo$nSamples <- if(!is.null(samples)) samples
+  foo$range <- if(!is.null(range)) range
   foo$closed <- closed
   foo$color <- if(!is.null(color)) color
   foo$graphType <- if(!is.null(type)) type
@@ -112,7 +114,7 @@ fun_add <- function(p, fun, samples = NULL, closed = FALSE, color = NULL, type =
 #' @rdname fun
 #' @export
 fun_add_param <- function(p, x, y, samples = NULL, closed = FALSE, color = NULL, type = "polyline",
-                          tip = FALSE, ...){
+                          range = NULL, tip = FALSE, ...){
   if(missing(p)) stop("missing plot.")
   if(missing(x) || missing(y)) stop("missing x or y.")
 
@@ -122,6 +124,7 @@ fun_add_param <- function(p, x, y, samples = NULL, closed = FALSE, color = NULL,
   foo$y <- y
   foo$fnType <- "parametric"
   foo$nSamples <- if(!is.null(samples)) samples
+  foo$range <- if(!is.null(range)) range
   foo$closed <- closed
   foo$color <- if(!is.null(color)) color
   foo$graphType <- if(!is.null(type)) type
@@ -134,12 +137,13 @@ fun_add_param <- function(p, x, y, samples = NULL, closed = FALSE, color = NULL,
 #' @rdname fun
 #' @export
 fun_add_polar <- function(p, r, scope = NULL, samples = NULL, closed = FALSE, color = NULL, type = "polyline",
-                          tip = FALSE, ...){
+                          range = NULL, tip = FALSE, ...){
   if(missing(p)) stop("missing plot.")
 
   foo <- list(...)
   foo$r <- r
   foo$scope <- if(!is.null(scope)) scope
+  foo$range <- if(!is.null(range)) range
   foo$fnType <- "polar"
   foo$nSamples <- if(!is.null(samples)) samples
   foo$closed <- closed
@@ -154,11 +158,12 @@ fun_add_polar <- function(p, r, scope = NULL, samples = NULL, closed = FALSE, co
 #' @rdname fun
 #' @export
 fun_add_imp <- function(p, fun, samples = NULL, closed = FALSE, color = NULL, type = NULL,
-                    tip = FALSE, ...){
+                        range = NULL, tip = FALSE, ...){
   if(missing(p)) stop("missing plot.")
 
   foo <- list(...)
   foo$fn <- if(!missing(fun)) fun
+  foo$range <- if(!is.null(range)) range
   foo$fnType <- "implicit"
   foo$nSamples <- if(!is.null(samples)) samples
   foo$closed <- closed
