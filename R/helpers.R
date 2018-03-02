@@ -103,6 +103,8 @@ fun_deriv <- function(p, fun, mouse = FALSE){
 #' @export
 fun_scope <- function(p, a, r0, gamma){
 
+  if(missing(p)) stop("missing plot.")
+
   scope <- list()
   scope$a <- a
   scope$r0 <- r0
@@ -110,5 +112,86 @@ fun_scope <- function(p, a, r0, gamma){
 
   p$x$data[[length(p$x$data)]]$scope <- scope
 
+  p
+}
+
+#' Add points
+#'
+#' Add points to plot.
+#'
+#' @inheritParams fun_add
+#' @param data \code{data.frame} or \code{matrix} where the first
+#' column is \eqn{x} and the sencond \eqn{y}.
+#' @param ... any other parameter.
+#'
+#' @examples
+#' points <- data.frame(x = rnorm(10), y = rnorm(10))
+#' lines <- data.frame(x = seq(-5, 4), y = rnorm(10))
+#'
+#' funplot() %>%
+#'   fun_points(points) %>%
+#'   fun_lines(lines)
+#'
+#' @rdname points
+#' @export
+fun_points <- function(p, data, ...){
+
+  if(missing(p)) stop("missing plot.")
+  if(missing(data)) stop("missing data.")
+
+  data <- apply(unname(data), 1, as.list)
+
+  points <- list(...)
+  points$points <- data
+  points$fnType = "points"
+  points$graphType = "scatter"
+
+  p$x$data <- append(p$x$data, list(points))
+  p
+}
+
+#' @rdname points
+#' @export
+fun_lines <- function(p, data, ...){
+
+  if(missing(p)) stop("missing plot.")
+  if(missing(data)) stop("missing data.")
+
+  data <- apply(unname(data), 1, as.list)
+
+  points <- list(...)
+  points$points <- data
+  points$fnType = "points"
+  points$graphType = "polyline"
+
+  p$x$data <- append(p$x$data, list(points))
+  p
+}
+
+#' Add a vector
+#'
+#' Add a vector to plot.
+#'
+#' @param vector A vector of length 2.
+#' @param offset A vector of displacement from the origin.
+#' @param ... any other parameter.
+#'
+#' @examples
+#' funplot() %>%
+#'   fun_vector(c(2, 1), c(1, 2))
+#'
+#' @export
+fun_vector <- function(p, vector, offset = NULL, ...){
+
+  if(missing(p)) stop("missing plot.")
+  if(missing(vector)) stop("missing vector.")
+
+  vect <- list(...)
+  vect$vector <- vector
+  vect$offset <- if(!is.null(offset)) offset
+  vect$fnType = "vector"
+  vect$graphType = "polyline"
+
+  p$x$data <- append(p$x$data, list(vect))
   p
 }
