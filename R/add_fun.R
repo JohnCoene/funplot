@@ -50,6 +50,10 @@
 #' funplot() %>%
 #'   fun_add_polar(r = "2 * sin(4 theta)")
 #'
+#' # implicit function
+#' funplot() %>%
+#'   fun_add_imp("x ^ 2 + y ^ 2 - 1")
+#'
 #' # multiple functions
 #' funplot() %>%
 #'   fun_add("sqrt(1 - x * x)") %>%
@@ -75,6 +79,16 @@
 #' # nthRoot
 #' funplot() %>%
 #'   fun_add("nthRoot(x, 3)^2")
+#'
+#' # derivative
+#' funplot() %>%
+#'   fun_add("x^2") %>%
+#'   fun_deriv("2 * x", mouse = TRUE)
+#'
+#' # secants
+#' funplot() %>%
+#'   fun_add("x^2") %>%
+#'   fun_secants(x0 = 5, mouse = TRUE)
 #'
 #' @rdname fun
 #' @seealso \code{\link{fun_secants}}, \code{\link{fun_deriv}}, \code{\link{fun_scope}}
@@ -137,4 +151,21 @@ fun_add_polar <- function(p, r, scope = NULL, samples = NULL, closed = FALSE, co
   p
 }
 
+#' @rdname fun
+#' @export
+fun_add_imp <- function(p, fun, samples = NULL, closed = FALSE, color = NULL, type = NULL,
+                    tip = FALSE, ...){
+  if(missing(p)) stop("missing plot.")
 
+  foo <- list(...)
+  foo$fn <- if(!missing(fun)) fun
+  foo$fnType <- "implicit"
+  foo$nSamples <- if(!is.null(samples)) samples
+  foo$closed <- closed
+  foo$color <- if(!is.null(color)) color
+  foo$graphType <- if(!is.null(type)) type
+  foo$skipTip <- tip
+
+  p$x$data <- append(p$x$data, list(foo))
+  p
+}

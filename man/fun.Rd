@@ -4,6 +4,7 @@
 \alias{fun_add}
 \alias{fun_add_param}
 \alias{fun_add_polar}
+\alias{fun_add_imp}
 \title{Add function}
 \usage{
 fun_add(p, fun, samples = NULL, closed = FALSE, color = NULL,
@@ -14,6 +15,9 @@ fun_add_param(p, x, y, samples = NULL, closed = FALSE, color = NULL,
 
 fun_add_polar(p, r, scope = NULL, samples = NULL, closed = FALSE,
   color = NULL, type = "polyline", tip = FALSE, ...)
+
+fun_add_imp(p, fun, samples = NULL, closed = FALSE, color = NULL,
+  type = NULL, tip = FALSE, ...)
 }
 \arguments{
 \item{p}{Plot as initialised by \code{\link{funplot}}.}
@@ -77,6 +81,10 @@ funplot() \%>\%
 funplot() \%>\%
   fun_add_polar(r = "2 * sin(4 theta)")
 
+# implicit function
+funplot() \%>\%
+  fun_add_imp("x ^ 2 + y ^ 2 - 1")
+
 # multiple functions
 funplot() \%>\%
   fun_add("sqrt(1 - x * x)") \%>\%
@@ -102,6 +110,16 @@ funplot() \%>\%
 # nthRoot
 funplot() \%>\%
   fun_add("nthRoot(x, 3)^2")
+
+# derivative
+funplot() \%>\%
+  fun_add("x^2") \%>\%
+  fun_deriv("2 * x", mouse = TRUE)
+
+# secants
+funplot() \%>\%
+  fun_add("x^2") \%>\%
+  fun_secants(x0 = 5, mouse = TRUE)
 
 }
 \seealso{
